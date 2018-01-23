@@ -6,7 +6,7 @@ coming soon...
 ## Installation
 - Copy the extension to `{your_forum_root}/ext/threedi/hlposts`
 - Go to ***"ACP" » "Customise" » "Extensions"*** and enable the ***"Highlight Posts"*** extension.
-- To start you MUST set some permissions at least for yourself, read our wiki pages starting from here ... coming soon.
+- To start you MUST set some permissions at least for yourself, read our wiki pages starting from here [Permissions](https://github.com/3D-I/HighlightPosts/wiki/ACP-Permissions).
 
 ## License
 [GPLv2](license.txt)

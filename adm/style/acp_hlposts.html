@@ -1,0 +1,73 @@
+{% if not INCLUDED_ACPHLPOSTS_CSS %}
+	{% INCLUDECSS '@threedi_hlposts/acp_hlposts.css' %}
+	{% set INCLUDED_ACPHLPOSTS_CSS = true %}
+{% endif %}
+
+{% if not INCLUDED_ACPHLPOSTSCOLLAPSIBLE_CSS %}
+	{% INCLUDECSS '@threedi_hlposts/acp_hlposts_collapsible.css' %}
+	{% set INCLUDED_ACPHLPOSTSCOLLAPSIBLE_CSS = true %}
+{% endif %}
+
+{% INCLUDE 'overall_header.html' %}
+
+<h1>{{ lang('ACP_HLPOSTS_SETTINGS_TITLE') }}</h1>
+
+{% if S_ERRORS %}
+{# Non invasive error reporting #}
+<fieldset>
+	<legend>{{ lang('ACP_HLPOSTS_ERRORS') }}</legend>
+	<p class="error">
+		{{ ERRORS_MSG }}
+	</p>
+</fieldset>
+{% endif %}
+
+<script>
+	var form_name = 'threedi_hlposts';
+	var load_draft = false;
+	var upload = false;
+	var imageTag = false;
+</script>
+
+<form id="threedi_hlposts" method="post" action="{{ U_ACTION }}">
+
+	{% if HLPOSTS_MODE in ['pm_create', 'pm_edit', 'pm_delete'] %}
+		{% INCLUDE 'acp_hlposts_pm_preview.html' %}
+	{% endif %}
+
+	{% INCLUDE 'acp_hlposts_' ~ HLPOSTS_MODE ~ '.html' %}
+
+	<fieldset class="hlposts-acp-submit">
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="update" name="update" value="{{ lang('SUBMIT') }}" />&nbsp;
+			{% if HLPOSTS_MODE == 'settings' %}
+				<input class="button2" type="submit" id="cancel" name="cancel" value="{{ lang('CANCEL') }}" formaction="{{ U_ACTION }}" formmethod="post"/>
+			{% else %}
+				<input class="button1" type="submit" id="preview" name="preview" value="{{ lang('PREVIEW') }}" />&nbsp;
+				<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
+			{% endif %}
+		</p>
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+
+	{% if not definition.INCLUDED_JQUERYCOLLAPSIBLEJS %}
+		{% INCLUDEJS '@threedi_hlposts/jquery.collapsible.min.js' %}
+		{% DEFINE INCLUDED_JQUERYCOLLAPSIBLEJS = true %}
+	{% endif %}
+
+	{% if not definition.INCLUDED_ACPHLPOSTSCOLLAPSIBLEJS %}
+		{% INCLUDEJS '@threedi_hlposts/acp_hlposts_collapsible.js' %}
+		{% DEFINE INCLUDED_ACPHLPOSTSCOLLAPSIBLEJS = true %}
+	{% endif %}
+
+	<noscript>
+		<style>
+			.collapse-container > :nth-child(even) {
+				display: block;
+			}
+		</style>
+	</noscript>
+
+</form>
+
+{% INCLUDE 'overall_footer.html' %}

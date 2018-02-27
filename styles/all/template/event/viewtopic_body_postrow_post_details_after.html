@@ -1,0 +1,24 @@
+{% if postrow.S_HIGHLIGHTED and postrow.HLPOSTS_F_ENABLED %}
+	<div id="highlight_{{ postrow.POST_ID }}" class="hlposts-panel" style="display: none;">
+		<div class="inner">
+			<p class="author">
+				<i class="icon fa-star fa-fw icon-gray icon-md" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_POST') }}</span>
+				<span>{{ lang('POST_BY_AUTHOR') }} {{ postrow.HIGHLIGHT_USER }} &raquo; {{ postrow.HIGHLIGHT_TIME }}</span>
+				{% if postrow.S_CAN_HIGHLIGHT %}
+					<span class="pagination">
+						<a href="{{ postrow.U_HIGHLIGHT_EDIT }}" title="{{ lang('HLPOSTS_EDIT') }}" class="button button-icon-only">
+							<i class="icon fa-pencil-square-o fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_EDIT') }}</span>
+						</a>
+						<a href="{{ postrow.U_HIGHLIGHT_DELETE }}" title="{{ lang('HLPOSTS_DELETE') }}" class="button button-icon-only">
+							<i class="icon fa-trash-o fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_DELETE') }}</span>
+						</a>
+					</span>
+				{% endif %}
+			</p>
+
+			<div class="content">
+				<i class="fa fa-info-circle fa-2x fa-pull-left" aria-hidden="true"></i> {{ postrow.HIGHLIGHT_TEXT }}
+			</div>
+		</div>
+	</div>
+{% endif %}

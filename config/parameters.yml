@@ -1,0 +1,3 @@
+parameters:
+    threedi.hlposts.tables.post_read: '%core.table_prefix%post_read'
+    threedi.hlposts.tables.highlights: '%core.table_prefix%highlights'

@@ -1,0 +1,21 @@
+{% if S_HLPOSTS_PM_PREVIEW %}
+	<fieldset class="hlposts-acp-outer">
+		<fieldset class="hlposts-acp-middle">
+			<legend>{{ lang('PREVIEW') }}</legend>
+			<fieldset class="hlposts-acp-inner">
+				<legend>{{ lang('PRIVATE_MESSAGE') }}</legend>
+				<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_PM_TOKENS_PREVIEW') }}</div>
+				<h3 class="hlposts-acp-preview-title">{{ HLPOSTS_PM_PREVIEW_TITLE }}</h3>
+				<p class="hlposts-acp-preview-author">
+					<strong>{{ lang('SENT_AT') }}{{ lang('COLON') }}</strong> {{ HLPOSTS_PM_PREVIEW_TIME }}<br>
+					<strong>{{ lang('PM_FROM') }}{{ lang('COLON') }}</strong> {{ HLPOSTS_PM_PREVIEW_USER }}<br>
+					<strong>{{ lang('TO') }}{{ lang('COLON') }}</strong> {{ '{' }}RECIP_NAME_FULL{{ '}' }}
+				</p>
+				<div class="hlpost-acp-preview-content">
+					{{ HLPOSTS_PM_PREVIEW_TEXT }}
+				</div>
+				<div class="hlposts-acp-preview-sig">{{ HLPOSTS_PM_PREVIEW_SIG }}</div>
+			</fieldset>
+		</fieldset>
+	</fieldset>
+{% endif %}

@@ -1,0 +1,302 @@
+	<br>
+	<div id="firstCollapseMenu" class="collapse-container">
+		<h6><span class="arrow-r"></span>{{ lang('ACP_HLPOSTS_GENERAL') }}</h6>
+		<div>
+			<fieldset class="hlposts-acp-outer">
+				<legend>{{ lang('ACP_HLPOSTS_SETTINGS') }}</legend>
+				<fieldset class="hlposts-acp-middle">
+					<legend>{{ lang('ACP_HLPOSTS_GENERAL') }}</legend>
+					<fieldset class="hlposts-acp-inner">
+						<legend>{{ lang('ACP_HLPOSTS_SETTINGS_BASIC') }}</legend>
+
+						{# (BOOL) Notification's default - 0 means disabled #}
+						<dl>
+							<dt>
+								<label for="hlposts_notify_default">{{ lang('ACP_HLPOSTS_NOTIFY_DEFAULT') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_NOTIFY_DEFAULT_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_notify_default" value="1"{% if HLPOSTS_NOTIFY_DEFAULT %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_notify_default" value="0"{% if not HLPOSTS_NOTIFY_DEFAULT %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						{# (BOOL) PM's default - 0 means disabled #}
+						<dl>
+							<dt>
+								<label for="hlposts_pm_default">{{ lang('ACP_HLPOSTS_PM_DEFAULT') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_PM_DEFAULT_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_pm_default" value="1"{% if HLPOSTS_PM_DEFAULT %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_pm_default" value="0"{% if not HLPOSTS_PM_DEFAULT %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						<dl>
+							<dt>
+								<label for="hlposts_pm_sig">{{ lang('ACP_HLPOSTS_PM_SIG') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_PM_SIG_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input name="hlposts_pm_sig" id="hlposts_pm_sig" type="text" size="50" maxlength="150" value="{{ HLPOSTS_PM_SIG }}" placeholder="{{ lang('ACP_HLPOSTS_PM_SIG_HOLDER') }}" />
+							</dd>
+						</dl>
+
+						<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_USE_BOT_EXPLAIN') }}</div>
+						{# (INT) PM's Bot - User ID #}
+						<dl>
+							<dt>
+								<label for="hlposts_bot">{{ lang('ACP_HLPOSTS_BOT') }}{{ lang('COLON') }}</label>
+							</dt>
+							<div class="hlposts-select" title="{{ lang('ACP_HLPOSTS_BOT_TITLE') }}" >
+								<dd>
+									{{ HLPOSTS_BOT }}
+								</dd>
+							</div>
+						</dl>
+
+						{# (BOOL) PM's Bot - Use #}
+						<dl>
+							<dt>
+								<label for="hlposts_use_bot">{{ lang('ACP_HLPOSTS_USE_BOT') }}{{ lang('COLON') }}</label>
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_use_bot" value="1"{% if HLPOSTS_USE_BOT %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_use_bot" value="0"{% if not HLPOSTS_USE_BOT %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_USERS_PAGE_EXPLAIN') }}</div>
+						{# (INT) Users per pagination's page - 0 means disabled #}
+						<dl>
+							<dt>
+								<label for="hlposts_users_page">{{ lang('ACP_HLPOSTS_USERS_PAGE') }}{{ lang('COLON') }}</label>
+							</dt>
+							<dd>
+								<input type="number" min="0" max="999" name="hlposts_users_page" id="hlposts_users_page" size="6" value="{{ HLPOSTS_USERS_PAGE }}" />
+							</dd>
+						</dl>
+					</fieldset>
+				</fieldset>
+			</fieldset>
+		</div>
+
+		<h6><span class="arrow-r"></span>{{ lang('ACP_HLPOSTS_TEMPLATE') }}</h6>
+		<div>
+			<fieldset class="hlposts-acp-outer">
+			<legend>{{ lang('ACP_HLPOSTS_SETTINGS') }}</legend>
+				<fieldset class="hlposts-acp-middle">
+					<legend>{{ lang('ACP_HLPOSTS_TEMPLATE') }}</legend>
+					<fieldset class="hlposts-acp-inner">
+						<legend>{{ lang('ACP_HLPOSTS_VIEW_PAGE') }}</legend>
+
+						{# (BOOL) 'Post in View's Page' visibility (Show/Hide) #}
+						<dl>
+							<dt>
+								<label for="hlposts_post_overview">{{ lang('ACP_HLPOSTS_POST_OVERVIEW') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_POST_OVERVIEW_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_post_overview" value="1"{% if HLPOSTS_POST_OVERVIEW %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_post_overview" value="0"{% if not HLPOSTS_POST_OVERVIEW %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+					</fieldset>
+
+					<fieldset class="hlposts-acp-inner">
+						<legend>{{ lang('ACP_HLPOSTS_TEMPLATE_LOCATIONS') }}</legend>
+
+						{# (BOOL) 'Marked read' icon visibility (Show/Hide) #}
+						<dl>
+							<dt>
+								<label for="hlposts_read_icon_display">{{ lang('ACP_HLPOSTS_READ_ICON_DISPLAY') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_READ_ICON_DISPLAY_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_read_icon_display" value="1"{% if HLPOSTS_READ_ICON_DISPLAY %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_read_icon_display" value="0"{% if not HLPOSTS_READ_ICON_DISPLAY %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_MARK_CONFIRM_TIME_NOTE') }}</div>
+						{# (BOOL) Display 'Marked read' confirmation message #}
+						<dl>
+							<dt>
+								<label for="hlposts_mark_confirm_show">{{ lang('ACP_HLPOSTS_MARK_CONFIRM_SHOW') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_MARK_CONFIRM_SHOW_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="radio" class="radio" name="hlposts_mark_confirm_show" value="1"{% if HLPOSTS_MARK_CONFIRM_SHOW %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_mark_confirm_show" value="0"{% if not HLPOSTS_MARK_CONFIRM_SHOW %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						{# (BOOL) Display time for 'Marked read' confirmation message #}
+						<dl>
+							<dt>
+								<label for="hlposts_mark_confirm_time">{{ lang('ACP_HLPOSTS_MARK_CONFIRM_TIME') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_MARK_CONFIRM_TIME_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="number" step="1" min="1" max="10000" name="hlposts_mark_confirm_time" id="hlposts_mark_confirm_time" size="6" value="{{ HLPOSTS_MARK_CONFIRM_TIME }}" />
+							</dd>
+						</dl>
+
+						<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_FLOOD_INTERVAL_NOTE') }}</div>
+						{# (DOUBLE) Flood interval step .5 - 0 means disabled #}
+						<dl>
+							<dt>
+								<label for="hlposts_mark_interval">{{ lang('ACP_HLPOSTS_FLOOD') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_FLOOD_EXPLAIN') }}
+							</dt>
+							<dd>
+								<input type="number" step="0.5" min="0" max="60" name="hlposts_mark_interval" id="hlposts_mark_interval" size="6" value="{{ HLPOSTS_MARK_INTERVAL }}" />
+							</dd>
+						</dl>
+
+						<div class="hlposts-acp-rules">{{ lang('ACP_HLPOSTS_TEMPLATE_LOCATIONS_EXPLAIN') }}</div>
+						{# (BOOL) Mark read icon's template switch #}
+						<dl>
+							<dt>
+								<label for="hlposts_read_icon_tpl_p">{{ lang('ACP_HLPOSTS_READ_ICON_TPL') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_READ_ICON_POSTING') }}
+							</dt>
+							{# (BOOL) = posting area #}
+							<dd>
+								<input type="radio" class="radio" name="hlposts_read_icon_tpl_p" value="1"{% if HLPOSTS_READ_ICON_TPL_P %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_read_icon_tpl_p" value="0"{% if not HLPOSTS_READ_ICON_TPL_P %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+
+						{# (BOOL) Mark read icon's template switch #}
+						<dl>
+							<dt>
+								<label for="hlposts_read_icon_tpl_m">{{ lang('ACP_HLPOSTS_READ_ICON_TPL') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_READ_ICON_MINIPROFILE') }}
+							</dt>
+							{# (BOOL) = miniprofile #}
+							<dd>
+								<input type="radio" class="radio" name="hlposts_read_icon_tpl_m" value="1"{% if HLPOSTS_READ_ICON_TPL_M %} checked="checked"{% endif %}/> {{ lang('YES') }} &nbsp;
+								<input type="radio" class="radio" name="hlposts_read_icon_tpl_m" value="0"{% if not HLPOSTS_READ_ICON_TPL_M %} checked="checked"{% endif %} /> {{ lang('NO') }}
+							</dd>
+						</dl>
+					</fieldset>
+				</fieldset>
+			</fieldset>
+		</div>
+
+		<h6><span class="arrow-r"></span>{{ lang('ACP_HLPOSTS_STYLE') }}</h6>
+		<div>
+			<fieldset class="hlposts-acp-outer">
+			<legend>{{ lang('ACP_HLPOSTS_SETTINGS') }}</legend>
+				<fieldset class="hlposts-acp-middle">
+					<legend>{{ lang('ACP_HLPOSTS_STYLE') }}</legend>
+
+					{# Only create a select-box when there is more than 1 style avialable #}
+					{% if HLPOSTS_STYLES|length > 1 %}
+						<fieldset class="hlposts-acp-inner">
+							<dl>
+								<dt><label for="hlposts_styles">{{ lang('ACP_HLPOSTS_STYLING') }}{{ lang('COLON') }}</label>
+								<br>
+								{{ lang('ACP_HLPOSTS_STYLING_EXPLAIN') }}
+								</dt>
+								<div class="hlposts-select" title="{{ lang('ACP_HLPOSTS_STYLES_SELECTOR') }}" >
+									<dd>
+										<select id="hlposts_styles">
+											{% for style in HLPOSTS_STYLES %}
+												<option value="hlposts_color_style_{{ style.style_id }}">{{ style.style_name }}</option>
+											{% endfor %}
+										</select>
+									</dd>
+								</div>
+							</dl>
+						</fieldset>
+					{% endif %}
+
+					{% for style in HLPOSTS_STYLES %}
+						<fieldset class="hlposts-acp-inner" id="hlposts_color_style_{{ style.style_id}}"{% if not loop.first %} hidden{% endif %}>
+							{#
+								Check if colors are already defined for this specific style.
+								If they are not yet defined, we use the ones from Prosilver (id: 1).
+								If they are defined, that does not mean that they are filled in,
+								so double check that and otherwise use the values from the CSS file.
+							#}
+
+							{% set style_colors = attribute(HLPOSTS_COLORS, style.style_id) is defined ? attribute(HLPOSTS_COLORS, style.style_id) : attribute('', '') %}
+							{% set style_preview_bckg = style_colors.bckg ? style_colors.bckg : '' %}
+							{% set style_preview_text = style_colors.text ? style_colors.text : '' %}
+							{% set style_preview_bord = style_colors.bord ? style_colors.bord : '' %}
+
+							<legend>{{ lang('ACP_HLPOSTS_TEMPLATE_COLORS') }}{{ lang('COLON') }}&nbsp;<em>{{ style.style_name}}</em></legend>
+
+							{#
+								The HTML5 type color input field opens the operating system's color widget.
+								Returns the HexDec value of the chosen color in format #000000
+								If not supported, returns a type text color-picker.
+							#}
+
+							<dl>
+								<dt>
+									<label for="bckg_{{ style.style_id }}">{{ lang('ACP_HLPOSTS_BCKG') }}{{ lang('COLON') }}</label>
+								</dt>
+								<dd>
+									<input type="text" name="color_configs[{{ style.style_id }}][bckg]" id="bckg_{{ style.style_id }}" class="input" value="{{ style_colors.bckg }}"  pattern="#[a-fA-F0-9]{6,6}" size="7"		 title="{{ lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('bckg_hex').value = this.value;" />
+									<input type="color" name="bckg_hex" id="bckg_hex_{{ style.style_id }}" class="input" value="{{ style_colors.bckg }}" placeholder="{{ style_colors.bckg }}" title="{{		 lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('bckg_{{ style.style_id }}').value = this.value;"/>
+
+									{{ lang('ACP_HLPOSTS_SETTINGS_HEX_STORED') }}{{ lang('COLON') }}
+									<input type="text" class="input" value="{{ style_preview_bckg }}" size="7" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly" disabled="disabled" />
+									<input type="color" class="input" value="{{ style_preview_bckg }}" placeholder="{{ style_preview_bckg }}" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly"		 disabled="disabled" />
+								</dd>
+							</dl>
+
+							<dl>
+								<dt>
+									<label for="text_{{ style.style_id }}">{{ lang('ACP_HLPOSTS_TEXT') }}{{ lang('COLON') }}</label>
+									<br>
+									{{ lang('ACP_HLPOSTS_TEXT_EXPLAIN') }}
+								</dt>
+								<dd>
+									<input type="text" name="color_configs[{{ style.style_id }}][text]" id="text_{{ style.style_id }}" class="input" value="{{ style_colors.text }}" pattern="#[a-fA-F0-9]{6,6}" size="7"		 title="{{ lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('text_hex').value = this.value;" />
+									<input type="color" name="text_hex" id="text_hex_{{ style.style_id }}" class="input" value="{{ style_colors.text }}" placeholder="{{ style_colors.text }}" title="{{		 lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('text_{{ style.style_id }}').value = this.value;"/>
+
+									{{ lang('ACP_HLPOSTS_SETTINGS_HEX_STORED') }}{{ lang('COLON') }}
+									<input type="text" class="input" value="{{ style_preview_text }}" size="7" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly" disabled="disabled" />
+									<input type="color" class="input" value="{{ style_preview_text }}" placeholder="{{ style_preview_text }}" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly"		 disabled="disabled" />
+								</dd>
+							</dl>
+
+							<dl>
+								<dt>
+									<label for="bord_{{ style.style_id }}">{{ lang('ACP_HLPOSTS_BORD') }}{{ lang('COLON') }}</label>
+								</dt>
+								<dd>
+									<input type="text" name="color_configs[{{ style.style_id }}][bord]" id="bord_{{ style.style_id }}" class="input" value="{{ style_colors.bord }}" pattern="#[a-fA-F0-9]{6,6}" size="7"		 title="{{ lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('bord_hex').value = this.value;" />
+									<input type="color" name="bord_hex" id="bord_hex+_{{ style.style_id }}" class="input" value="{{ style_colors.bord }}" placeholder="{{ style_colors.bord }}" title="{{		 lang('ACP_HLPOSTS_COLORPICKER_EXPLAIN') }}" onchange="document.getElementById('bord_{{ style.style_id }}').value = this.value;"/>
+
+									{{ lang('ACP_HLPOSTS_SETTINGS_HEX_STORED') }}{{ lang('COLON') }}
+									<input type="text" class="input" value="{{ style_preview_bord }}" size="7" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly" disabled="disabled" />
+									<input type="color" class="input" value="{{ style_preview_bord }}" placeholder="{{ style_preview_bord }}" title="{{ lang('ACP_HLPOSTS_COLORPICKER_STORED') }}" readonly="readonly"		 disabled="disabled" />
+								</dd>
+							</dl>
+						</fieldset>
+					{% endfor %}
+				</fieldset>
+			</fieldset>
+		</div>
+	</div>
+
+	{% if not definition.INCLUDED_HLPOSTSSTYLESJS %}
+		{% INCLUDEJS '@threedi_hlposts/acp_hlposts_styles.js' %}
+		{% DEFINE INCLUDED_HLPOSTSSTYLESJS = true %}
+	{% endif %}

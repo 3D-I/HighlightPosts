@@ -1,0 +1,16 @@
+{% if S_HLPOSTS_READ_ICON_TPL_MINI and S_HLPOSTS and postrow.HLPOSTS_F_ENABLED %}
+	{% if postrow.S_CAN_VIEW_READ %}
+		<a href="{{ postrow.U_VIEW_POST_READ }}" class="top hlposts-margin-fix" title="{{ lang('HLPOSTS_POST_MARKED_VIEW') }}">
+			<i class="icon fa-eye fa-fw icon-orange" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_POST_MARKED_VIEW') }}</span>
+		</a>
+	{% elseif postrow.S_POST_BEEN_READ %}
+		{% if S_HLPOSTS_READ_ICON_DISPLAY %}
+			<span class="top hlposts-margin-fix" title="{{ lang('HLPOSTS_POST_MARKED_READ') }}"><i class="icon fa-eye fa-fw icon-green" aria-hidden="true"></i></span>
+		{% endif %}
+	{% else %}
+		<a id="mark_read_{{ postrow.POST_ID }}_back2top" href="{{ postrow.U_MARK_POST_READ }}" class="top hlposts-margin-fix" title="{{ lang('MARK_READ') }}" data-ajax="threedi_hlposts_mark">
+			<i class="icon fa-eye-slash fa-fw icon-red" aria-hidden="true"></i>
+			<span class="sr-only">{{ lang('MARK_READ') }}</span>
+		</a>
+	{% endif %}
+{% endif %}

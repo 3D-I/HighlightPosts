@@ -1,0 +1,31 @@
+		<h6><span class="arrow-r"></span>{{ lang('ACP_HLPOSTS_PM_TOKENS') }}</h6>
+		<div>
+
+			<fieldset class="hlposts-acp-outer">
+				<fieldset class="hlposts-acp-middle">
+					<legend>{{ lang('ACP_HLPOSTS_PM_TOKENS') }}</legend>
+					<fieldset class="hlposts-acp-inner">
+						<legend>{{ lang('ACP_HLPOSTS_PM_TOKENS_EXPLAIN') }}</legend>
+
+						<table cellspacing="1" id="down">
+							<thead>
+								<tr>
+									<th>{{ lang('ACP_HLPOSTS_PM_TOKEN') }}</th>
+									<th>{{ lang('ACP_HLPOSTS_PM_TOKEN_DEFINITION') }}</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for hlposts_tokens in loops.hlposts_tokens %}
+									<tr valign="top">
+										<td class="row1">{hlposts_tokens.TOKEN}</td>
+										<td class="row2">{hlposts_tokens.EXPLAIN}</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+
+					</fieldset>
+				</fieldset>
+			</fieldset>
+
+		</div>

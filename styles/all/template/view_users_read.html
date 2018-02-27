@@ -1,0 +1,145 @@
+{% INCLUDE 'overall_header.html' %}
+
+<h2>{{ lang('HLPOSTS_POST_MARKED_USERS') }}</h2>
+
+{% if S_POST_OVERVIEW %}
+	<div class="post bg2">
+		<div class="inner">
+			<div class="postbody">
+				<h3 class="first"><a href="{{ U_POST }}" title="{{ lang('VIEW_TOPIC') }}">{{ POST_SUBJECT }}</a></h3>
+				<p class="author">
+					<i class="icon fa-file fa-fw icon-lightgray icon-md" aria-hidden="true"></i>
+					{{ lang('POST_BY_AUTHOR') }} {{ POST_AUTHOR }} &raquo; {{ POST_TIME }}
+				</p>
+
+				{% if S_HIGHLIGHT %}
+					<div class="hlposts-panel">
+						<div class="inner">
+
+							<p class="author">
+								<i class="icon fa-star fa-fw icon-gray icon-md" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_POST') }}</span>
+								<span>{{ lang('POST_BY_AUTHOR') }} {{ HIGHLIGHT_USER }} &raquo; {{ HIGHLIGHT_TIME }}</span>
+							</p>
+
+							<div class="content">
+								<i class="fa fa-info-circle fa-2x fa-pull-left" aria-hidden="true"></i> {{ HIGHLIGHT_TEXT }}
+							</div>
+						</div>
+					</div>
+				{% endif %}
+
+				<div class="content">
+					{{ POST_TEXT }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endif %}
+
+<div class="panel" id="memberlist_search" style="display: none;">
+	<h2 class="solo">{{ lang('FIND_USERNAME') }}</h2>
+
+	<form method="post" action="{{ S_MODE_ACTION }}" id="search_memberlist">
+		<div class="panel">
+			<div class="inner">
+				<p>{{ lang('HLPOSTS_SEARCH_EXPLAIN') }}</p>
+				<fieldset class="fields1 column1">
+					<dl style="overflow: visible;">
+						<dt><label for="username">{{ lang('USERNAME') }}{{ lang('COLON') }}</label></dt>
+						<dd>
+							<input type="text" name="u" id="username" value="{{ USERNAME }}" class="inputbox" />
+						</dd>
+					</dl>
+					<dl>
+						<dt><label for="search_group_id">{{ lang('GROUP') }}{{ lang('COLON') }}</label></dt>
+						<dd><select name="g" id="search_group_id">{{ S_GROUP_SELECT }}</select></dd>
+					</dl>
+				</fieldset>
+				<fieldset class="fields1 column2">
+					<dl>
+						<dt><label for="joined">{{ lang('JOINED') }}{{ lang('COLON') }}</label></dt>
+						<dd><select name="js">{{ S_JOINED_TIME_OPTIONS }}</select> <input class="inputbox medium" type="text" name="j" id="joined" value="{{ JOINED }}" /></dd>
+					</dl>
+					<dl>
+						<dt><label for="active">{{ lang('LAST_ACTIVE') }}{{ lang('COLON') }}</label></dt>
+						<dd><select name="as">{{ S_ACTIVE_TIME_OPTIONS }}</select> <input class="inputbox medium" type="text" name="a" id="active" value="{{ ACTIVE }}" /></dd>
+					</dl>
+					<dl>
+						<dt><label for="active">{{ lang('HLPOSTS_MARK_TIME') }}{{ lang('COLON') }}</label></dt>
+						<dd><select name="ms">{{ S_MARKED_TIME_OPTIONS }}</select> <input class="inputbox medium" type="text" name="m" id="marked" value="{{ MARKED }}" /></dd>
+					</dl>
+				</fieldset>
+				<div class="clear"></div>
+				<hr />
+				<fieldset class="submit-buttons">
+					<input type="reset" name="reset" value="{{ lang('RESET') }}" class="button1 button button-form-bold" />&nbsp;
+					<input type="submit" name="submit" value="{{ lang('SEARCH') }}" class="button1 button button-form" />
+					{{ S_FORM_TOKEN }}
+				</fieldset>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="action-bar bar-top">
+	<div class="member-search panel">
+		<i class="icon fa-angle-double-left fa-fw icon-bluegray" aria-hidden="true"></i> <a href="{{ U_POST }}" title="{{ lang('HLPOSTS_POST_RETURN') }}">{{ lang('HLPOSTS_POST_RETURN') }}</a>
+	</div>
+	<div class="member-search panel">
+		<i class="icon fa-search fa-fw icon-bluegray" aria-hidden="true"></i> <a href="{U_FIND_MEMBER}" id="member_search" data-alt-text="{L_HIDE_MEMBER_SEARCH}">{{ lang('FIND_USERNAME') }}</a>
+	</div>
+
+	<div class="pagination">
+		{{ TOTAL_USERS }}
+		{% if loops.pagination|length %}
+			{% INCLUDE 'pagination.html' %}
+		{% else %}
+			&bull; {{ PAGE_NUMBER }}
+		{% endif %}
+	</div>
+</div>
+
+<div class="forabg bg3">
+	<div class="inner">
+		<table class="table1 responsive">
+			<thead>
+				<tr>
+					<th class="center"><a href="{{ U_SORT_NAME }}">{{ lang('USERNAME') }}</a></th>
+					<th class="center"><a href="{{ U_SORT_JOIN }}">{{ lang('SORT_JOINED') }}</a></th>
+					<th class="center"><a href="{{ U_SORT_VISIT }}">{{ lang('LAST_VISIT') }}</a></th>
+					<th class="center"><a href="{{ U_SORT_GROUP }}">{{ lang('GROUP') }}</a></th>
+					<th class="center"><a href="{{ U_SORT_TIME }}">{{ lang('HLPOSTS_MARK_TIME') }}</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% if users|length %}
+					{% for users in loops.users %}
+						<tr class="{% if users.S_ROW_COUNT is even %}bg1{% else %}bg2{% endif %}">
+							<td class="center">{{ users.USER }}</td>
+							<td class="center">{{ users.JOIN_DATE }}</td>
+							<td class="center">{{ users.LAST_VISIT }}</td>
+							<td class="center"><a href="{{ users.U_GROUP }}" style="color: #{{ users.GROUP_COLOUR }};">{{ users.GROUP_NAME }}</a></td>
+							<td class="center">{{ users.READ_TIME }}</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr class="bg2"><td class="center" colspan="5"><strong>{{ lang('NO_ONLINE_USERS') }}</strong></td></tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="action-bar bar-bottom">
+	<div class="pagination">
+		{{ TOTAL_USERS }}
+		{% if loops.pagination|length %}
+			{% INCLUDE 'pagination.html' %}
+		{% else %}
+			&bull; {{ PAGE_NUMBER }}
+		{% endif %}
+	</div>
+</div>
+
+{% INCLUDE 'jumpbox.html' %}
+{% INCLUDE 'overall_footer.html' %}

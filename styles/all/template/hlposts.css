@@ -1,0 +1,46 @@
+/* CSS Document */
+
+/* Colors are here just to be overriden via ACP configuration */
+.hlposts-panel {
+	margin-bottom: 10px;
+	font-size: 0.9em;
+	padding: 5px 10px;
+	border-radius: 7px;
+	/*hlposts_colors bckg */
+	background-color: #84cc84;
+	/*hlposts_colors text */
+	color: #28313F;
+	/*hlposts_colors bord */
+	box-shadow: 1px 2px 3px #000000;
+}
+
+.hlposts-margin-fix {
+	margin-right: 1px !important;
+	margin-left: 1px !important;
+}
+
+/* Colors for icons */
+.highlight-toggle > i {
+	color: #ffd700 !important;
+}
+
+.highlight-view > i.icon-orange {
+	color: #ff6600 !important;
+}
+
+.highlight-view > i.icon-green {
+	color: #4db355 !important;
+}
+
+.highlight-view > i.icon-red {
+	color: #d41142 !important;
+}
+
+.post-buttons .dropdown .highlight-view,
+.post-buttons .dropdown .highlight-toggle {
+	display: block;
+	font-size: 1.2em;
+	text-align: right;
+	padding: 5px;
+	width: 100%;
+}

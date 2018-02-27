@@ -1,0 +1,100 @@
+/* CSS Document */
+
+.hlposts-acp-inner {
+}
+
+.hlposts-acp-middle {
+	background-color: #F3F3F3; /* light grey */ 
+}
+
+.hlposts-acp-outer {
+	background-image: url("../images/hlposts_acp_gfx.png");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+}
+
+.hlposts-acp-submit {
+}
+
+.hlposts-acp-preview-title {
+	color: #115098;
+	font-size: 1.5em;
+}
+
+.hlposts-acp-preview-author {
+	color: #333333;
+	font-size: 0.85em;
+}
+
+.hlposts-acp-preview-content {
+	font-size: 1.1em;
+}
+
+.hlposts-acp-preview-sig {
+	font-size: 11px;
+	line-height: 16px;
+	border-top: 1px solid transparent;
+	border-top-color: #dedede;
+	clear: left;
+	overflow: hidden;
+	width: 100%;
+	margin-top: 16px;
+	padding-top: 2px;
+}
+
+.hlposts-acp-preview-sig li {
+	list-style-type: inherit;
+}
+
+.hlposts-acp-preview-sig ul,
+.hlposts-acp-preview-sig ol {
+	margin: 10px 0 10px 33px;
+}
+
+.hlposts-acp-preview-sig a,
+.hlposts-acp-preview-sig a:hover {
+	text-decoration: underline;
+	background-color: transparent;
+	border: none;
+}
+
+/* That's the native phpBB prosilver class "rules" slightly modified */
+.hlposts-acp-rules {
+	margin-bottom: 10px;
+	font-size: 0.9em;
+	padding: 5px 10px;
+	border-radius: 7px;
+	background-color: #d6e9cf; /* light green */
+	color: #125814; /* dark green */
+}
+
+/* Better alignment than the core phpbb */
+fieldset dd {
+	padding-top: 3px;
+	margin-top: 2px;
+}
+
+/* Rounded corners against the core phpbb */
+fieldset {
+	padding: 5px 10px;
+	border-radius: 7px;
+}
+
+/* Rounded corners against the core phpbb */
+input.button1, input.button2 {
+	border-radius: 4px;
+}
+
+.hlposts-select select {
+	background: transparent;
+	width: auto;
+	padding: 5px;
+	font-size: 0.85em;
+	line-height: inherit;
+	border: 0;
+	border-radius: 0;
+	height: 24px;
+	webkit-appearance: none;
+}

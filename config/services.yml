@@ -1,0 +1,70 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    threedi.hlposts.listener:
+        class: threedi\hlposts\event\main_listener
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@service_container'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@language'
+            - '@request'
+            - '@user'
+            - '@threedi.hlposts.hlposts_utils'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%threedi.hlposts.tables.post_read%'
+            - '%threedi.hlposts.tables.highlights%'
+        tags:
+            - { name: event.listener }
+
+    threedi.hlposts.controller:
+        class: threedi\hlposts\controller\main_controller
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@dbal.conn'
+            - '@group_helper'
+            - '@controller.helper'
+            - '@language'
+            - '@log'
+            - '@notification_manager'
+            - '@pagination'
+            - '@text_formatter.parser'
+            - '@text_formatter.renderer'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '@text_formatter.utils'
+            - '@threedi.hlposts.hlposts_utils'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%threedi.hlposts.tables.post_read%'
+            - '%threedi.hlposts.tables.highlights%'
+
+    threedi.hlposts.notification.type.highlighted:
+        class: threedi\hlposts\notification\type\highlighted
+        shared: false # service MUST not be shared for this to work!
+        parent: notification.type.base
+        calls:
+            - [set_controller_helper, ['@controller.helper']]
+            - [set_user_loader, ['@user_loader']]
+        tags:
+            - { name: notification.type }
+
+    threedi.hlposts.hlposts_utils:
+        class: threedi\hlposts\core\operator
+        arguments:
+            - '@auth'
+            - '@config'
+            - '@config_text'
+            - '@dbal.conn'
+            - '@group_helper'
+            - '@language'
+            - '@user'
+            - '@template'
+            - '%core.root_path%'
+            - '%core.php_ext%'

@@ -1,0 +1,46 @@
+{% if postrow.HLPOSTS_F_ENABLED %}
+	{% if S_HLPOSTS_READ_ICON_TPL_POST and S_HLPOSTS %}
+		{% if postrow.S_CAN_VIEW_READ %}
+			<li>
+				<a href="{{ postrow.U_VIEW_POST_READ }}" class="button button-icon-only highlight-view" title="{{ lang('HLPOSTS_POST_MARKED_VIEW') }}">
+					<i class="icon fa-eye fa-fw icon-orange" aria-hidden="true"></i>
+					<span class="sr-only">{{ lang('HLPOSTS_POST_MARKED_VIEW') }}</span>
+				</a>
+			</li>
+		{% elseif postrow.S_POST_BEEN_READ %}
+			{% if S_HLPOSTS_READ_ICON_DISPLAY %}
+				<li>
+					<button class="button button-icon-only highlight-view" title="{{ lang('HLPOSTS_POST_MARKED_READ') }}" disabled><i class="icon fa-eye fa-fw icon-green" aria-hidden="true"></i> <span class="sr-only">{{ lang('HLPOSTS_POST_MARKED_READ')}}</span></button>
+				</li>
+			{% endif %}
+		{% else %}
+			<li>
+				<button name="mark_read_{{ postrow.POST_ID }}_posting_buttons" data-url="{{ postrow.U_MARK_POST_READ }}" class="button button-icon-only highlight-view" title="{{ lang('MARK_READ') }}">
+					<i class="icon fa-eye-slash fa-fw icon-red" aria-hidden="true"></i>
+					<span class="sr-only">{{ lang('MARK_READ') }}</span>
+				</button>
+			</li>
+		{% endif %}
+	{% endif %}
+
+	{% if not postrow.S_HIGHLIGHTED and postrow.S_CAN_HIGHLIGHT %}
+		<li>
+			<a href="{{ postrow.U_HIGHLIGHT_ADD }}" title="{{ lang('HLPOSTS_ADD' )}}" class="button button-icon-only">
+				<i class="icon fa-star fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_ADD') }}</span>
+			</a>
+		</li>
+	{% endif %}
+
+	{% if postrow.S_HIGHLIGHTED and S_HLPOSTS %}
+		<li>
+			<button class="button button-icon-only highlight-toggle" value="{{ postrow.POST_ID }}" title="{{ lang('HLPOSTS_POST') }}">
+				<i class="icon fa-star fa-fw" aria-hidden="true"></i><span class="sr-only">{{ lang('HLPOSTS_POST') }}</span>
+			</button>
+		</li>
+	{% endif %}
+
+	{% if not definition.INCLUDED_HLPOSTSJS %}
+		{% INCLUDEJS '@threedi_hlposts/hlposts.js' %}
+		{% DEFINE INCLUDED_HLPOSTSJS = true %}
+	{% endif %}
+{% endif %}

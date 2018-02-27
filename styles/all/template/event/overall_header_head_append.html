@@ -1,0 +1,4 @@
+{% if not INCLUDED_HLPOSTS_CSS %}
+	{% INCLUDECSS '@threedi_hlposts/hlposts.css' %}
+	{% set INCLUDED_HLPOSTS_CSS = true %}
+{% endif %}

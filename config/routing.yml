@@ -1,0 +1,23 @@
+threedi_hlposts_controller:
+    path: /hlposts/f{forum_id}/t{topic_id}/p{post_id}/a{author_id}/{action}
+    defaults: { _controller: threedi.hlposts.controller:handle }
+    requirements:
+        forum_id: \d+
+        topic_id: \d+
+        post_id: \d+
+        author_id: \d+
+
+threedi_hlposts_view:
+    path: /hlposts/view/f{forum_id}/p{post_id}
+    defaults: { _controller: threedi.hlposts.controller:view, page: 1 }
+    requirements:
+        forum_id: \d+
+        post_id: \d+
+
+threedi_hlposts_viewpage:
+    path: /hlposts/view/f{forum_id}/p{post_id}/page-{page}
+    defaults: { _controller: threedi.hlposts.controller:view }
+    requirements:
+        forum_id: \d+
+        post_id: \d+
+        page: \d+

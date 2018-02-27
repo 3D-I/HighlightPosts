@@ -1,7 +1,7 @@
 {
 	"name": "threedi/hlposts",
 	"type": "phpbb-extension",
-	"description": "Highlight posts and mark them as read, useful for Educational Boards.",
+	"description": "Highlight posts and mark them as read, for Educational Boards.",
 	"homepage": "https://github.com/3D-I/HighlightPosts",
 	"version": "1.2.0-beta",
 	"time": "2018-02-27",

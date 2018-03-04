@@ -15,22 +15,8 @@ namespace threedi\hlposts\notification\type;
  */
 class highlighted extends \phpbb\notification\type\base
 {
-	/** @var \phpbb\controller\helper */
-	protected $helper;
-
 	/** @var \phpbb\user_loader */
 	protected $user_loader;
-
-	/**
-	 * Set the controller helper
-	 * @param \phpbb\controller\helper $helper
-	 *
-	 * @return void
-	 */
-	public function set_controller_helper(\phpbb\controller\helper $helper)
-	{
-		$this->helper = $helper;
-	}
 
 	/**
 	 * Set the user loader

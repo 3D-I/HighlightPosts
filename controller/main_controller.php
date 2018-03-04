@@ -170,19 +170,19 @@ class main_controller
 		/* Check if Highlight Post is enabled for this forum */
 		if (!$this->hlposts_utils->forum_enabled($forum_id))
 		{
-			return $this->helper->message($this->lang->lang('HLPOSTS_ERROR_DISABLED') . $return_msg);
+			throw new \phpbb\exception\http_exception(404, $this->lang->lang('HLPOSTS_ERROR_DISABLED'));
+		}
+
+		/* Check permission if user is allowed to highlight */
+		if (!$this->auth->acl_get('m_hlposts_can_highlight'))
+		{
+			throw new \phpbb\exception\http_exception(403, $this->lang->lang('HLPOSTS_ERROR_CAN_NOT'));
 		}
 
 		/* If it's cancelled, we return to the post we were viewing. */
 		if ($cancel)
 		{
 			redirect($post_url);
-		}
-
-		/* Check permission if user is allowed to highlight */
-		if (!$this->auth->acl_get('m_hlposts_can_highlight'))
-		{
-			return $this->helper->message($this->lang->lang('HLPOSTS_ERROR_CAN_NOT'));
 		}
 
 		/* Set up parser settings */
@@ -501,8 +501,7 @@ class main_controller
 		/* Check if Highlight Post is enabled for this forum */
 		if (!$this->hlposts_utils->forum_enabled($forum_id))
 		{
-			// Should we better use an exception here as well?
-			return $this->helper->message($this->lang->lang('HLPOSTS_ERROR_DISABLED') . $return_msg);
+			throw new \phpbb\exception\http_exception(404, $this->lang->lang('HLPOSTS_ERROR_DISABLED'));
 		}
 
 		/* Template switches also over here, if needed */

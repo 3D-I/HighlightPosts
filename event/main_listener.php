@@ -14,7 +14,6 @@ namespace threedi\hlposts\event;
  * @ignore
  */
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Highlight Posts Event listener.
@@ -24,7 +23,6 @@ class main_listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'								=> 'load_language_on_setup',
 			'core.viewtopic_assign_template_vars_before'	=> 'hlposts_template_switches_vt',
 			'core.viewtopic_get_post_data'					=> 'viewtopic_get_post_data',
 			'core.viewtopic_post_rowset_data'				=> 'viewtopic_post_rowset_data',
@@ -44,9 +42,6 @@ class main_listener implements EventSubscriberInterface
 	/** @var \phpbb\config\config */
 	protected $config;
 
-	/** @var ContainerInterface */
-	protected $container;
-
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
@@ -55,6 +50,9 @@ class main_listener implements EventSubscriberInterface
 
 	/** @var \phpbb\language\language */
 	protected $lang;
+
+	/** @var \phpbb\textformatter\s9e\renderer */
+	protected $renderer;
 
 	/** @var \phpbb\request\request */
 	protected $request;
@@ -82,10 +80,10 @@ class main_listener implements EventSubscriberInterface
 	 *
 	 * @param \phpbb\auth\auth						$auth				Authentication object
 	 * @param \phpbb\config\config					$config				Configuration object
-	 * @param ContainerInterface					$container			Container interface
 	 * @param \phpbb\db\driver\driver_interface		$db					Database object
 	 * @param \phpbb\controller\helper				$helper				Controller helper object
 	 * @param \phpbb\language\language				$lang				Language object
+	 * @param \phpbb\textformatter\s9e\renderer		$renderer			Textformatter renderer object
 	 * @param \phpbb\request\request				$request			Request object
 	 * @param \phpbb\user							$user				User object
 	 * @param \threedi\hlposts\core\operator		$hlpost_utils		Highlight Posts utilities
@@ -95,14 +93,14 @@ class main_listener implements EventSubscriberInterface
 	 * @param string								$highlights_table	Highlight Posts highlights table
 	 * @access public
 	 */
-	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, ContainerInterface $container, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $helper, \phpbb\language\language $lang, \phpbb\request\request $request, \phpbb\user $user, \threedi\hlposts\core\operator $hlposts_utils, $root_path, $php_ext, $post_read_table, $highlights_table)
+	public function __construct(\phpbb\auth\auth $auth, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $helper, \phpbb\language\language $lang, \phpbb\textformatter\s9e\renderer $renderer, \phpbb\request\request $request, \phpbb\user $user, \threedi\hlposts\core\operator $hlposts_utils, $root_path, $php_ext, $post_read_table, $highlights_table)
 	{
 		$this->auth				= $auth;
 		$this->config			= $config;
-		$this->container		= $container;
 		$this->db				= $db;
 		$this->helper			= $helper;
 		$this->lang				= $lang;
+		$this->renderer			= $renderer;
 		$this->request			= $request;
 		$this->user				= $user;
 		$this->hlposts_utils	= $hlposts_utils;
@@ -112,24 +110,6 @@ class main_listener implements EventSubscriberInterface
 
 		$this->post_read_table	= $post_read_table;
 		$this->highlights_table = $highlights_table;
-	}
-
-	/**
-	 * Load common language files during user setup
-	 *
-	 * @param	\phpbb\event\data		$event		Event object
-	 * @event	core.user_setup
-	 * @return	void
-	 * @access	public
-	 */
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'threedi/hlposts',
-			'lang_set' => 'common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	/**
@@ -219,14 +199,6 @@ class main_listener implements EventSubscriberInterface
 	 */
 	public function viewtopic_modify_post_row($event)
 	{
-		/**
-		 * Call phpBB's Textformatter Renderer object through the container service
-		 * Otherwise (when regularly injected it) it throws a style_id error
-		 *
-		 * @var \phpbb\textformatter\s9e\renderer
-		 */
-		$renderer = $this->container->get('text_formatter.renderer');
-
 		/* The event parameters */
 		$topic_data	= $event['topic_data'];
 		$poster_id	= $event['poster_id'];
@@ -239,7 +211,7 @@ class main_listener implements EventSubscriberInterface
 
 		if ($hlposts_f_enabled)
 		{
-			$post_row['HIGHLIGHT_TEXT'] = !empty($row['highlight_text']) ? $renderer->render($row['highlight_text']) : '';
+			$post_row['HIGHLIGHT_TEXT'] = !empty($row['highlight_text']) ? $this->renderer->render($row['highlight_text']) : '';
 			$post_row['HIGHLIGHT_TIME'] = !empty($row['highlight_time']) ? $this->user->format_date($row['highlight_time']) : '';
 			$post_row['HIGHLIGHT_USER'] = !empty($row['highlight_user_id']) ? get_username_string('full', $row['highlight_user_id'], $row['highlight_username'], $row['highlight_user_colour']) : '';
 

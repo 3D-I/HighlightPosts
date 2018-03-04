@@ -7,10 +7,10 @@ services:
         arguments:
             - '@auth'
             - '@config'
-            - '@service_container'
             - '@dbal.conn'
             - '@controller.helper'
             - '@language'
+            - '@text_formatter.renderer'
             - '@request'
             - '@user'
             - '@threedi.hlposts.hlposts_utils'
@@ -18,6 +18,11 @@ services:
             - '%core.php_ext%'
             - '%threedi.hlposts.tables.post_read%'
             - '%threedi.hlposts.tables.highlights%'
+        tags:
+            - { name: event.listener }
+
+    threedi.hlposts.lang_listener:
+        class: threedi\hlposts\event\lang_listener
         tags:
             - { name: event.listener }
 
@@ -50,7 +55,6 @@ services:
         shared: false # service MUST not be shared for this to work!
         parent: notification.type.base
         calls:
-            - [set_controller_helper, ['@controller.helper']]
             - [set_user_loader, ['@user_loader']]
         tags:
             - { name: notification.type }

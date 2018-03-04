@@ -62,6 +62,7 @@ $lang = array_merge($lang, array(
 	// Icons
 	'ACP_HLPOSTS_READ_ICON_POSTING'			=>	'Within the posting buttons',
 	'ACP_HLPOSTS_READ_ICON_MINIPROFILE'		=>	'In the miniprofile next to posts.',
+	'ACP_HLPOSTS_NOTIFY_DEFAULT_NOTE'		=>	'Make sure “allow board notifications” are ON. Otherwise, regardless of these settings, Highlight Posts notifications are not send.',
 	'ACP_HLPOSTS_NOTIFY_DEFAULT'			=>	'Send notification default',
 	'ACP_HLPOSTS_NOTIFY_DEFAULT_EXPLAIN'	=>	'Preset the checkbox for sending the notification to the users.',
 	'ACP_HLPOSTS_PM_DEFAULT'				=>	'Send PM notification default',

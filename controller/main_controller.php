@@ -298,8 +298,8 @@ class main_controller
 						}
 					}
 
-					/* Add it to the log */
-					$this->log->add('mod', $this->user->data['user_id'], $this->user->data['user_ip'], 'ACP_HLPOSTS_LOG_HIGHLIGHT_EDITED', time(), array('topic_id' => $topic_id, $this->utils->clean_formatting($highlight_data['hl_text'])));
+					/* Add it to the log - Without Emojis */
+					$this->log->add('mod', $this->user->data['user_id'], $this->user->data['user_ip'], 'ACP_HLPOSTS_LOG_HIGHLIGHT_EDITED', time(), array('topic_id' => $topic_id, preg_replace('/[\x{10000}-\x{10FFFF}]/u', "\xef\xbf\xbd", $this->utils->clean_formatting($highlight_data['hl_text']))));
 
 					/* Show success message and refresh the page */
 					meta_refresh(3, $post_url);
@@ -369,8 +369,8 @@ class main_controller
 						}
 					}
 
-					/* Add it to the log */
-					$this->log->add('mod', $this->user->data['user_id'], $this->user->data['user_ip'], 'ACP_HLPOSTS_LOG_HIGHLIGHT_ADDED', time(), array('topic_id' => $topic_id, $this->utils->clean_formatting($highlight_data['hl_text'])));
+					/* Add it to the log - Without Emojis */
+					$this->log->add('mod', $this->user->data['user_id'], $this->user->data['user_ip'], 'ACP_HLPOSTS_LOG_HIGHLIGHT_ADDED', time(), array('topic_id' => $topic_id, preg_replace('/[\x{10000}-\x{10FFFF}]/u', "\xef\xbf\xbd", $this->utils->clean_formatting($highlight_data['hl_text']))));
 
 					/* Show success message and refresh the page */
 					meta_refresh(3, $post_url);

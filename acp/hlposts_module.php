@@ -166,8 +166,8 @@ class hlposts_module
 					/* (BOOL) PM's default - Yes/No */
 					$config->set('hlposts_pm_default', $request->variable('hlposts_pm_default', (int) $config['hlposts_pm_default']));
 
-					/* (STRING) PM's default - Signature */
-					$config->set('hlposts_pm_sig', $request->variable('hlposts_pm_sig', (string) $config['hlposts_pm_sig'], true));
+					/* (STRING) PM's default - Signature - Without Emojis */
+					$config->set('hlposts_pm_sig', trim(preg_replace('/[\x{10000}-\x{10FFFF}]/u', "", $request->variable('hlposts_pm_sig', (string) $config['hlposts_pm_sig'], true))));
 
 					/* (INT) User ID of the Bot */
 					$config->set('hlposts_bot', $request->variable('hlposts_bot', (int) $config['hlposts_bot']));

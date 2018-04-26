@@ -75,10 +75,10 @@ class highlighted extends \phpbb\notification\type\base
 	/**
 	 * Find the users who want to receive notifications
 	 *
-	 * @param array $data The type specific data
-	 * @param array $options Options for finding users for notification
-	 * 		ignore_users => array of users and user types that should not receive notifications from this type because they've already been notified
-	 * 						e.g.: array(2 => array(''), 3 => array('', 'email'), ...)
+	 * @param array $data		The type specific data
+	 * @param array $options	Options for finding users for notification
+	 * 							ignore_users => array of users and user types that should not receive notifications from this type because they've already been notified
+	 * 							e.g.: array(2 => array(''), 3 => array('', 'email'), ...)
 	 *
 	 * @return array
 	 */
@@ -175,10 +175,10 @@ class highlighted extends \phpbb\notification\type\base
 	 * Function for preparing the data for insertion in an SQL query
 	 * (The service handles insertion)
 	 *
-	 * @param array $data The type specific data
-	 * @param array $pre_create_data Data from pre_create_insert_array()
+	 * @param array $data				The type specific data
+	 * @param array $pre_create_data	Data from pre_create_insert_array()
 	 *
-	 * @return array Array of data ready to be inserted into the database
+	 * @return void|array				Array of data ready to be inserted into the database
 	 */
 	public function create_insert_array($data, $pre_create_data = array())
 	{

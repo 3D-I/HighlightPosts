@@ -53,7 +53,7 @@ class operator
 	 * @param \phpbb\config\db_text				$config_text
 	 * @param \phpbb\db\driver\driver_interface	$db				Database object
 	 * @param \phpbb\group\helper				$group_helper	Group helper object
-	 * @param \phpbb\language\language			$language		Language object
+	 * @param \phpbb\language\language			$lang			Language object
 	 * @param \phpbb\user						$user			User object
 	 * @param \phpbb\template\template			$template		Template object
 	 * @access public
@@ -286,19 +286,23 @@ class operator
 		/* PMs signature if any, set in ACP/settings */
 		$pm_sig = htmlspecialchars_decode($this->config['hlposts_pm_sig'], ENT_COMPAT);
 
-		/**
-		 * Prepare the PM and tokens
-		 */
+		/* Prepare the PM and tokens */
+		$uid = $bitfield = '';
+		$m_flags = 3;
+
+		/* No censor-text applies to both fields*/
 		$pm_title = htmlspecialchars_decode($pm_title, ENT_COMPAT);
 		$pm_title = str_replace($this->hlposts_tokens(), $this->hlposts_tokens_replacements($sen_uname, $sen_uname, $rec_uname, $rec_uname, false, false), $pm_title);
-		$uid_pm = $bitfield_pm = $options_pm = '';
+
+		/* No Emojis in the message's subject allowed */
+		$pm_title = preg_replace('/[\x{10000}-\x{10FFFF}]/u', "\xef\xbf\xbd", $pm_title);
+
 		$allow_bbcode_pm = $allow_urls_pm = $allow_smilies_pm = false;
-		generate_text_for_storage($pm_title, $uid_pm, $bitfield_pm, $options_pm, $allow_bbcode_pm, $allow_urls_pm, $allow_smilies_pm);
+		generate_text_for_display($pm_title, $uid, $bitfield, $m_flags, $censor_text = false);
 
 		$pm_message = htmlspecialchars_decode($pm_message, ENT_COMPAT);
 		$pm_message = str_replace($this->hlposts_tokens(), $this->hlposts_tokens_replacements($sen_uname_full, $sen_uname, $rec_uname_full, $rec_uname, $pm_sig, $post_url), $pm_message);
-		$uid = $bitfield = '';
-		$m_flags = 3;
+
 		$allow_bbcode = $allow_urls = $allow_smilies = true;
 		generate_text_for_storage($pm_message, $uid, $bitfield, $m_flags, $allow_bbcode, $allow_urls, $allow_smilies);
 
@@ -396,7 +400,7 @@ class operator
 	 *
 	 * @param  int			$group_selected		The already selected group id, if any
 	 * @return string		$s_group_select		Formatted string for options display
-	 * @access private
+	 * @access public
 	 */
 	public function get_groups_for_select($group_selected)
 	{

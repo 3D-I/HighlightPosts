@@ -36,7 +36,7 @@ class ext extends \phpbb\extension\base
 			$is_enableable = false;
 		}
 
-		if (!phpbb_version_compare(PHP_VERSION, '5.4.7', '>='))
+		if (!phpbb_version_compare(PHP_VERSION, '5.5', '>='))
 		{
 			$lang['EXTENSION_NOT_ENABLEABLE'] .= '<br>' . $user->lang('HLPO_ERROR_PHP_VERSION');
 			$is_enableable = false;

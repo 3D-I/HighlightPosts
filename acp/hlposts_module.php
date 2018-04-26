@@ -19,6 +19,10 @@ class hlposts_module
 	public $tpl_name;
 	public $u_action;
 
+	/**
+	 * @param $id
+	 * @param $mode
+	 */
 	public function main($id, $mode)
 	{
 		global $phpbb_container;
@@ -120,7 +124,10 @@ class hlposts_module
 				$hlp_title2 = $request->variable('hlposts_pm_edit_title', '');
 				$hlp_title3 = $request->variable('hlposts_pm_delete_title', '');
 
-				/* If empty title no way */
+				/**
+				 * If empty title no way
+				 * >= PHP 5.5 due to arbitrary expressions in empty
+				 */
 				if (empty($hlp_title1 || $hlp_title2 || $hlp_title3))
 				{
 					$errors[] = $language->lang('ACP_HLPOSTS_EMPTY_TITLE');
@@ -130,7 +137,10 @@ class hlposts_module
 				$hlp_msg2 = $request->variable('hlposts_pm_edit_message', '');
 				$hlp_msg3 = $request->variable('hlposts_pm_delete_message', '');
 
-				/* If empty message no way */
+				/**
+				 * If empty message no way
+				 * >= PHP 5.5 due to arbitrary expressions in empty
+				 */
 				if (empty($hlp_msg1 || $hlp_msg2 || $hlp_msg3))
 				{
 					$errors[] = $language->lang('ACP_HLPOSTS_EMPTY_MESSAGE');

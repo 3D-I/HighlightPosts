@@ -83,7 +83,7 @@ class main_controller
 	 * @param \phpbb\db\driver\driver_interface	$db						Database object
 	 * @param \phpbb\group\helper				$group_helper			Group helper object
 	 * @param \phpbb\controller\helper			$helper					Controller helper object
-	 * @param \phpbb\language\language			$language				Language object
+	 * @param \phpbb\language\language			$lang					Language object
 	 * @param \phpbb\log\log					$log					Log object
 	 * @param \phpbb\notification\manager		$notification_manager	Notification manager
 	 * @param \phpbb\pagination					$pagination				Pagination object
@@ -149,11 +149,12 @@ class main_controller
 	/**
 	 * Handling any highlight action for a certain post
 	 *
-	 * @param	int		$forum_id		The forum id
-	 * @param	int		$topic_id		The topic id
-	 * @param	int		$post_id		The post id
-	 * @param	string	$action			add, edit, delete
-	 * @return	mixed	render page
+	 * @param    int    $forum_id	The forum id
+	 * @param    int    $topic_id	The topic id
+	 * @param    int    $post_id	The post id
+	 * @param    int    $author_id	The Author ID
+	 * @param    string $action		add, edit, delete
+	 * @return    mixed    render page
 	 * @access public
 	 */
 	public function handle($forum_id, $topic_id, $post_id, $author_id, $action)

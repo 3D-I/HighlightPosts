@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Highlight posts and mark them as read system, useful for Educational Boards.",
 	"homepage": "https://github.com/3D-I/HighlightPosts",
-	"version": "2.0.0-RC",
-	"time": "2018-04-17",
+	"version": "2.0.1-RC",
+	"time": "2018-11-18",
 	"license": "GPL-2.0",
 	"authors": [
 		{

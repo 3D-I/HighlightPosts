@@ -7,14 +7,14 @@
 	<legend>{{ lang('ACP_HLPOSTS_FORUMS_LEGEND') }}</legend>
 	<dl>
 		<dt>
-			<label for="hlposts_f_enable">{{ lang('ACP_HLPOSTS_FORUMS_ENABLE') }}{{ lang('COLON') }}</label>
+			<label for="hlposts_f_enable_on">{{ lang('ACP_HLPOSTS_FORUMS_ENABLE') }}{{ lang('COLON') }}</label>
 			<br>
 			<span>{{ lang('ACP_HLPOSTS_FORUMS_ENABLE_EXPLAIN') }}</span>
 		</dt>
 		<dd>
-			<label><input type="radio" class="radio" name="hlposts_f_enable" value="1" id="hlposts_f_enable"{% if S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+			<label><input type="radio" class="radio" name="hlposts_f_enable_on" value="1" id="hlposts_f_enable"{% if S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
 
-			<label><input type="radio" class="radio" name="hlposts_f_enable" value="0" id="hlposts_f_enable"{% if not S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			<label><input type="radio" class="radio" name="hlposts_f_enable_off" value="0" id="hlposts_f_enable"{% if not S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
 		</dd>
 	</dl>
 </fieldset>

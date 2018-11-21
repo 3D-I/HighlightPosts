@@ -25,11 +25,11 @@ class install_forums_switch extends \phpbb\db\migration\migration
 
 	public function update_schema()
 	{
-		/* All the existing forums will be enabled as default */
+		/* All the existing forums will be NOT enabled as default */
 		return array(
 			'add_columns'	=> array(
 				$this->table_prefix . 'forums'	=> array(
-					'hlposts_f_enable'	=> array('BOOL', 1),
+					'hlposts_f_enable'	=> array('BOOL', 0),
 				),
 			),
 		);

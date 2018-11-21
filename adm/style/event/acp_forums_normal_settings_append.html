@@ -9,8 +9,8 @@
 	<dl>
 		<dt><label for="hlposts_f_enable_on">{{ lang('ACP_HLPOSTS_FORUMS_ENABLE') }}{{ lang('COLON') }}</label><br><span>{{ lang('ACP_HLPOSTS_FORUMS_ENABLE_EXPLAIN') }}</span></dt>
 		<dd>
-			<label><input type="radio" class="radio" id="hlposts_f_enable_on" name="forum_wrw_read" value="1" {% if S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-			<label><input type="radio" class="radio" id="hlposts_f_enable_off" name="forum_wrw_read" value="0"{% if not S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			<label><input type="radio" class="radio" id="hlposts_f_enable_on" name="hlposts_f_enable" value="1" {% if S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+			<label><input type="radio" class="radio" id="hlposts_f_enable_off" name="hlposts_f_enable" value="0"{% if not S_HLPOSTS_F_ENABLE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
 		</dd>
 	</dl>
 </fieldset>

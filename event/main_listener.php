@@ -404,7 +404,7 @@ class main_listener implements EventSubscriberInterface
 		{
 			$forum_data = $event['forum_data'];
 
-			$forum_data['hlposts_f_enable'] = (int) 1;
+			$forum_data['hlposts_f_enable'] = (bool) true;
 
 			$event['forum_data'] = $forum_data;
 		}

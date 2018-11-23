@@ -44,3 +44,9 @@
 	padding: 5px;
 	width: 100%;
 }
+
+.highlight-post-overflow {
+	overflow-y: scroll;
+	width: auto;
+	height: 350px;
+}

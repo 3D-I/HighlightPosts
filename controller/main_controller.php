@@ -734,18 +734,19 @@ class main_controller
 		$sort_url = $this->helper->route('threedi_hlposts_view', array('forum_id' => (int) $forum_id, 'post_id' => (int) $post_id)) . '?' . implode('&amp;', $params);
 
 		/* First let's render the text */
-		$text = $this->renderer->render($post['post_text']);
-
-		/**
-		 * Attachments - Include files needed for display attachments
-		 */
-		if (!function_exists('parse_attachments'))
-		{
-			include $this->root_path . 'includes/functions_content.' . $this->php_ext;
-		}
+		$censor = censor_text($post['post_text']);
+		$text = $this->renderer->render($censor);
 
 		if ($post['post_attachment'])
 		{
+			/**
+			 * Attachments - Include files needed for display attachments
+			 */
+			if (!function_exists('parse_attachments'))
+			{
+				include $this->root_path . 'includes/functions_content.' . $this->php_ext;
+			}
+
 			$sql = 'SELECT *
 				FROM ' . ATTACHMENTS_TABLE . '
 				WHERE post_msg_id = ' . (int) $post_id . '
@@ -761,10 +762,17 @@ class main_controller
 
 			if (count($attachments))
 			{
-				$update_count = array();
-
-				/* Only parses attachments placed inline? */
+				/* Only parses attachments placed inline */
 				parse_attachments((int) $post['forum_id'], $text, $attachments, $update_count);
+			}
+
+			/* Display the remaining of the attachments */
+			if (count($attachments))
+			{
+				foreach ($attachments as $attachment)
+				{
+					$this->template->assign_var('POST_ATTACHMENTS', $attachment);
+				}
 			}
 		}
 

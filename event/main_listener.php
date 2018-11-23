@@ -392,7 +392,7 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * New Forums added (default enabled)
+	 * New Forums added (default disabled)
 	 *
 	 * @event	core.acp_manage_forums_initialise_data
 	 * @return	void
@@ -404,7 +404,7 @@ class main_listener implements EventSubscriberInterface
 		{
 			$forum_data = $event['forum_data'];
 
-			$forum_data['hlposts_f_enable'] = (bool) true;
+			$forum_data['hlposts_f_enable'] = (bool) false;
 
 			$event['forum_data'] = $forum_data;
 		}

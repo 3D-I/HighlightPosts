@@ -773,7 +773,10 @@ class main_controller
 				{
 					foreach ($attachments as $attachment)
 					{
-						$this->template->assign_var('POST_ATTACHMENTS', $attachment);
+						$this->template->assign_block_vars('attachments', array(
+							'POST_ATTACHMENTS' => $attachment,
+							)
+						);
 					}
 				}
 			}

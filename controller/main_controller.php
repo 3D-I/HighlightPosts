@@ -737,7 +737,7 @@ class main_controller
 		$censor = censor_text($post['post_text']);
 		$text = $this->renderer->render($censor);
 
-		if ($post['post_attachment'])
+		if ( $this->auth->acl_get('u_download') && $this->config['allow_attachments'] && $this->auth->acl_get('f_download', $post['forum_id']) )
 		{
 			/**
 			 * Attachments - Include files needed for display attachments
@@ -747,31 +747,34 @@ class main_controller
 				include $this->root_path . 'includes/functions_content.' . $this->php_ext;
 			}
 
-			$sql = 'SELECT *
-				FROM ' . ATTACHMENTS_TABLE . '
-				WHERE post_msg_id = ' . (int) $post_id . '
-					AND in_message = 0
-				ORDER BY attach_id DESC';
-			$result = $this->db->sql_query($sql);
-
-			while ($row = $this->db->sql_fetchrow($result))
+			if ($post['post_attachment'])
 			{
-				$attachments[] = $row;
-			}
-			$this->db->sql_freeresult($result);
+				$sql = 'SELECT *
+					FROM ' . ATTACHMENTS_TABLE . '
+					WHERE post_msg_id = ' . (int) $post_id . '
+						AND in_message = 0
+					ORDER BY attach_id DESC';
+				$result = $this->db->sql_query($sql);
 
-			if (count($attachments))
-			{
-				/* Only parses attachments placed inline */
-				parse_attachments((int) $post['forum_id'], $text, $attachments, $update_count);
-			}
-
-			/* Display the remaining of the attachments */
-			if (count($attachments))
-			{
-				foreach ($attachments as $attachment)
+				while ($row = $this->db->sql_fetchrow($result))
 				{
-					$this->template->assign_var('POST_ATTACHMENTS', $attachment);
+					$attachments[] = $row;
+				}
+				$this->db->sql_freeresult($result);
+
+				if (count($attachments))
+				{
+					/* Only parses attachments placed inline */
+					parse_attachments((int) $post['forum_id'], $text, $attachments, $update_count);
+				}
+
+				/* Display the remaining of the attachments */
+				if (count($attachments))
+				{
+					foreach ($attachments as $attachment)
+					{
+						$this->template->assign_var('POST_ATTACHMENTS', $attachment);
+					}
 				}
 			}
 		}

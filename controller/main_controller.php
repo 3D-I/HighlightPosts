@@ -734,37 +734,51 @@ class main_controller
 		$sort_url = $this->helper->route('threedi_hlposts_view', array('forum_id' => (int) $forum_id, 'post_id' => (int) $post_id)) . '?' . implode('&amp;', $params);
 
 		/* First let's render the text */
-		$text = $this->renderer->render($post['post_text']);
+		$censor = censor_text($post['post_text']);
+		$text = $this->renderer->render($censor);
 
-		/**
-		 * Attachments - Include files needed for display attachments
-		 */
-		if (!function_exists('parse_attachments'))
+		if ( $this->auth->acl_get('u_download') && $this->config['allow_attachments'] && $this->auth->acl_get('f_download', $post['forum_id']) )
 		{
-			include $this->root_path . 'includes/functions_content.' . $this->php_ext;
-		}
-
-		if ($post['post_attachment'])
-		{
-			$sql = 'SELECT *
-				FROM ' . ATTACHMENTS_TABLE . '
-				WHERE post_msg_id = ' . (int) $post_id . '
-					AND in_message = 0
-				ORDER BY attach_id DESC';
-			$result = $this->db->sql_query($sql);
-
-			while ($row = $this->db->sql_fetchrow($result))
+			/**
+			 * Attachments - Include files needed for display attachments
+			 */
+			if (!function_exists('parse_attachments'))
 			{
-				$attachments[] = $row;
+				include $this->root_path . 'includes/functions_content.' . $this->php_ext;
 			}
-			$this->db->sql_freeresult($result);
 
-			if (count($attachments))
+			if ($post['post_attachment'])
 			{
-				$update_count = array();
+				$sql = 'SELECT *
+					FROM ' . ATTACHMENTS_TABLE . '
+					WHERE post_msg_id = ' . (int) $post_id . '
+						AND in_message = 0
+					ORDER BY attach_id DESC';
+				$result = $this->db->sql_query($sql);
 
-				/* Only parses attachments placed inline? */
-				parse_attachments((int) $post['forum_id'], $text, $attachments, $update_count);
+				while ($row = $this->db->sql_fetchrow($result))
+				{
+					$attachments[] = $row;
+				}
+				$this->db->sql_freeresult($result);
+
+				if (count($attachments))
+				{
+					/* Only parses attachments placed inline */
+					parse_attachments((int) $post['forum_id'], $text, $attachments, $update_count);
+				}
+
+				/* Display the remaining of the attachments */
+				if (count($attachments))
+				{
+					foreach ($attachments as $attachment)
+					{
+						$this->template->assign_block_vars('attachments', array(
+							'POST_ATTACHMENTS' => $attachment,
+							)
+						);
+					}
+				}
 			}
 		}
 

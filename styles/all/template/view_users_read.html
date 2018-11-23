@@ -28,8 +28,17 @@
 					</div>
 				{% endif %}
 
-				<div class="content">
+				<div class="content highlight-post-overflow">
 					{{ POST_TEXT }}
+					<br>
+					<dl class="attachbox">
+						<dt>
+							{{ lang('ATTACHMENTS') }}
+						</dt>
+						{% for attachment in attachments %}
+							<dd>{{ attachment.POST_ATTACHMENTS }}<dd>
+						{% endfor %}
+					</dl>
 				</div>
 			</div>
 		</div>

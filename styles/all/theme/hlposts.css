@@ -48,5 +48,5 @@
 .highlight-post-overflow {
 	overflow-y: scroll;
 	width: auto;
-	max-height: 350px;
+	max-height: 250px;
 }

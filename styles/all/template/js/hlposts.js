@@ -51,7 +51,7 @@ function markPostRead(response) {
 	if (back2topBool) {
 		// if we have to show the 'marked read' icon
 		if (readDisplayBool) {
-			$iconBack2Top.replaceWith('<span class="top hlposts-margin-fix" title="' + langNewTitle + '"><i class="icon fa-eye fa-fw icon-green" aria-hidden="true"></i></span>');
+			$iconBack2Top.replaceWith('<span class="top hlposts-margin-fix" title="' + langNewTitle + '"><i class="icon fa-eye fa-fw icon-red" aria-hidden="true"></i></span>');
 		} else {
 		// else we remove the DOM element
 			$iconBack2Top.remove();
@@ -62,7 +62,7 @@ function markPostRead(response) {
 	if (postingButtonsBool) {
 		// if we have to show the 'marked read' icon
 		if (readDisplayBool) {
-			$iconPostingButton.replaceWith('<button class="button-icon-only highlight-view" title="' + langNewTitle + '" name="marked_read_' + postId + '" disabled><i class="icon fa-eye fa-fw" style="color: #4db355 !important;" aria-hidden="true"></i> <span>' + langNewTitle + '</span></button>');
+			$iconPostingButton.replaceWith('<button class="button-icon-only highlight-view" title="' + langNewTitle + '" name="marked_read_' + postId + '" disabled><i class="icon fa-eye fa-fw icon-red aria-hidden="true"></i><span>' + langNewTitle + '</span></button>');
 			$('[name="marked_read_' + postId + '"]').first().addClass('button');
 		} else {
 		// else we remove the DOM element (the parent, which is the <li>-element)

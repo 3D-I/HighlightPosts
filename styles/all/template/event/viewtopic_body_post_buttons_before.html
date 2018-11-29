@@ -10,13 +10,13 @@
 		{% elseif postrow.S_POST_BEEN_READ %}
 			{% if S_HLPOSTS_READ_ICON_DISPLAY %}
 				<li>
-					<button class="button button-icon-only highlight-view" title="{{ lang('HLPOSTS_POST_MARKED_READ') }}" disabled><i class="icon fa-eye fa-fw icon-green" aria-hidden="true"></i> <span class="sr-only">{{ lang('HLPOSTS_POST_MARKED_READ')}}</span></button>
+					<button class="button button-icon-only highlight-view" title="{{ lang('HLPOSTS_POST_MARKED_READ') }}" disabled><i class="icon fa-eye fa-fw icon-red" aria-hidden="true"></i> <span class="sr-only">{{ lang('HLPOSTS_POST_MARKED_READ')}}</span></button>
 				</li>
 			{% endif %}
 		{% else %}
 			<li>
 				<button name="mark_read_{{ postrow.POST_ID }}_posting_buttons" data-url="{{ postrow.U_MARK_POST_READ }}" class="button button-icon-only highlight-view" title="{{ lang('MARK_READ') }}">
-					<i class="icon fa-eye-slash fa-fw icon-red" aria-hidden="true"></i>
+					<i class="icon fa-eye-slash fa-fw icon-green" aria-hidden="true"></i>
 					<span class="sr-only">{{ lang('MARK_READ') }}</span>
 				</button>
 			</li>

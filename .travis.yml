@@ -1,6 +1,5 @@
 language: php
 sudo: required
-dist: precise
 
 matrix:
   include:
@@ -30,7 +29,7 @@ matrix:
       env: DB=mysqli
   allow_failures:
     - php: nightly
-fast_finish: true
+  fast_finish: true
 
 env:
   global:

@@ -19,8 +19,9 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACL_U_HLPOSTS_VIEW'			=> 'Highlight Posts - Can mark posts as read',
-	'ACL_M_HLPOSTS_CAN_HIGHLIGHT'	=> 'Highlight Posts - Can add/edit/delete Highlights',
-	'ACL_M_HLPOSTS_CAN_VIEW_READ'	=> 'Highlight Posts - Can view who marked posts as read',
-	'ACL_A_HLPOSTS_ADMIN'			=> 'Highlight Posts - Can manage the Extension',
+	'ACL_U_HLPOSTS_VIEW'				=> '<strong>Highlight Posts</strong> - Can mark posts as read',
+	'ACL_U_ALLOW_HLPOSTS_ICON_EYE'		=> '<strong>Highlight Posts</strong> - Can see the eye icon',
+	'ACL_M_HLPOSTS_CAN_HIGHLIGHT'		=> '<strong>Highlight Posts</strong> - Can add/edit/delete Highlights',
+	'ACL_M_HLPOSTS_CAN_VIEW_READ'		=> '<strong>Highlight Posts</strong> - Can view who marked posts as read',
+	'ACL_A_HLPOSTS_ADMIN'				=> '<strong>Highlight Posts</strong> - Can manage the Extension',
 ));

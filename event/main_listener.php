@@ -352,6 +352,10 @@ class main_listener implements EventSubscriberInterface
 				'lang'	=> 'ACL_U_HLPOSTS_VIEW',
 				'cat'	=> 'misc',
 			],
+			'u_allow_hlposts_icon_eye' => [
+				'lang'	=> 'ACL_U_ALLOW_HLPOSTS_ICON_EYE',
+				'cat'	=> 'misc',
+			],
 		];
 
 		$event['permissions'] = $permissions;

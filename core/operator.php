@@ -125,8 +125,8 @@ class operator
 			/* Display 'post marked read' icon */
 			'S_HLPOSTS_READ_ICON_DISPLAY'	=>	(bool) $this->config['hlposts_read_icon_display'],
 			/* Location of 'post read' icon' (P = posting area - M = miniprofile) */
-			'S_HLPOSTS_READ_ICON_TPL_POST'	=>	(bool) $this->config['hlposts_read_icon_tpl_p'],
-			'S_HLPOSTS_READ_ICON_TPL_MINI'	=>	(bool) $this->config['hlposts_read_icon_tpl_m'],
+			'S_HLPOSTS_READ_ICON_TPL_POST'	=>	(bool) ($this->config['hlposts_read_icon_tpl_p'] && $this->auth->acl_get('u_allow_hlposts_icon_eye')),
+			'S_HLPOSTS_READ_ICON_TPL_MINI'	=>	(bool) ($this->config['hlposts_read_icon_tpl_m'] && $this->auth->acl_get('u_allow_hlposts_icon_eye')),
 			/* Notifications */
 			'HLPOSTS_NOTIFY_BOARD'			=>	(bool) $this->config['hlposts_notify_default'],
 			'HLPOSTS_NOTIFY_PM'				=>	(bool) $this->config['hlposts_pm_default'],
